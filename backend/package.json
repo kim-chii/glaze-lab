@@ -5,8 +5,8 @@
   "main": "src/app.js",
   "type": "module",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon src/app.js",
+    "start": "tsc && node built/app.js",
+    "dev": "nodemon --watch src --exec node --no-warnings=ExperimentalWarning --loader ts-node/esm ./src/app.ts",
     "db-reset": "psql -d glazeapp -a -f ../database/claybody.sql"
   },
   "author": "Kim Tan",
@@ -16,6 +16,8 @@
     "pg": "^8.12.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.17.0"
   }
 }

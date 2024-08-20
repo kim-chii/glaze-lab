@@ -9,10 +9,4 @@ router.get("/", async (req, res) => {
   res.send(tests);
 });
 
-router.get("/:id", async (req, res) => {
-  console.log("for now will return a  glazes for test");
-  const test = await db.getAllGlazeTests(req.params.id);
-  console.log("tests: ", test);
-  res.send(test);
-});
 export default router;
