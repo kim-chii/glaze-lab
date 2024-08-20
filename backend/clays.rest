@@ -1,2 +1,12 @@
-GET http://localhost:3000/clays
+// G
+GET http://localhost:3000/clays 
 
+###
+
+POST http://localhost:3000/clays HTTP/1.1
+content-type: application/json
+
+{
+    "name": "hawaiian blue",
+    "notes": "a blue groggy clay"
+}

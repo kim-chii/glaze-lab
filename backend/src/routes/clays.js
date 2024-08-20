@@ -16,10 +16,12 @@ router.get("/:id", (req, res) => {
 });
 
 // create one clay body
-router.post("/", (req, res) => {});
-
-// Update one
-router.patch("/", (req, res) => {});
+// result = rows Inserted
+router.post("/", async (req, res) => {
+  const { name, notes } = req.body;
+  const result = await db.addClay(name, notes);
+  res.send(`Inserted ${result} rows`);
+});
 
 // delete one
 router.delete("/:id", (req, res) => {});

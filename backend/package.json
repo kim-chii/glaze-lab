@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js",
+    "db-reset": "psql -d glazeapp -a -f ../database/claybody.sql"
   },
   "author": "Kim Tan",
   "license": "ISC",

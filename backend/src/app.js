@@ -11,6 +11,7 @@ app.listen(3000, () => {
 
 // set upClient connection to postgres
 
+app.use(express.json());
 app.get("/", (req, res) => {
   res.send("<h1>Hello World!</h1>"); // displays on page
 });
