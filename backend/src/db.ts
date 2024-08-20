@@ -89,10 +89,26 @@ VALUES ('${name}', '${notes}');
   }
 };
 
+const deleteClay = async (id) => {
+  try {
+    const query = `
+   INSERT INTO clays (name, notes)
+VALUES ('${name}', '${notes}');
+    `;
+    let result = await pool.query(query);
+
+    const rowCount = result?.rowCount;
+    return rowCount;
+  } catch (e) {
+    console.error("Issue in addClay!! ", e);
+  }
+};
+
 export {
   getAllClays,
   getAllGlazes,
   getAllGlazeTests,
   getAllGlazesForTest,
   addClay,
+  deleteClay,
 };

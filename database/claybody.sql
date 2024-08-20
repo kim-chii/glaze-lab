@@ -36,7 +36,7 @@ CREATE TABLE glaze_tests (
     id SERIAL PRIMARY KEY NOT NULL,
     name TEXT NOT NULL,
     notes TEXT,
-    clayId INT REFERENCES clays NOT NULL
+    clayId INT REFERENCES clays ON DELETE CASCADE
 );
 
 INSERT INTO glaze_tests (name, notes, clayId)
@@ -45,9 +45,9 @@ VALUES ('Glaze Test 1', 'magical mist / koke white', 1), ('Glaze Test 2', 'koke 
 -- create junction table for glazes to glaze tests
 DROP TABLE glazetests_glazes CASCADE;
 CREATE TABLE glazetests_glazes(
-    glaze_test_id INTEGER REFERENCES glaze_tests(id),
+    glaze_test_id INTEGER REFERENCES glaze_tests(id) ON DELETE CASCADE,
     glaze_id INTEGER REFERENCES glazes(id),
-    CONSTRAINT glazetests_glazes_pk PRIMARY KEY(glaze_test_id,glaze_id)
+    CONSTRAINT glazetests_glazes_pk PRIMARY KEY(glaze_test_id,glaze_id) 
 );
 
 INSERT INTO glazetests_glazes (glaze_test_id, glaze_id)

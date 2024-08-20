@@ -24,6 +24,10 @@ router.post("/", async (req, res) => {
 });
 
 // delete one
-router.delete("/:id", (req, res) => {});
+router.delete("/:id", async (req, res) => {
+  console.log("trying to delete something");
+  const id = req.params.id;
+  const result = await db.deleteClay(id);
+});
 
 export default router;

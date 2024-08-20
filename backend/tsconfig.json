@@ -6,6 +6,7 @@
     "moduleResolution": "nodenext",
     "module": "NodeNext",
     "esModuleInterop": true
+    // "noEmitOnError": true
   },
   "ts-node": {
     "esm": true

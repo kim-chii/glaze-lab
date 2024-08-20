@@ -10,3 +10,6 @@ content-type: application/json
     "name": "hawaiian blue",
     "notes": "a blue groggy clay"
 }
+
+### Delete clay
+DELETE http://localhost:3000/clays/1
