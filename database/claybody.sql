@@ -46,7 +46,7 @@ VALUES ('Glaze Test 1', 'magical mist / koke white', 1), ('Glaze Test 2', 'koke 
 DROP TABLE glazetests_glazes CASCADE;
 CREATE TABLE glazetests_glazes(
     glaze_test_id INTEGER REFERENCES glaze_tests(id) ON DELETE CASCADE,
-    glaze_id INTEGER REFERENCES glazes(id),
+    glaze_id INTEGER REFERENCES glazes(id) ON DELETE CASCADE,
     CONSTRAINT glazetests_glazes_pk PRIMARY KEY(glaze_test_id,glaze_id) 
 );
 

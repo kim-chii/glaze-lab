@@ -1,1 +1,15 @@
 GET http://localhost:3000/glazes
+
+### Create a new glaze 
+
+POST http://localhost:3000/glazes
+content-type: application/json
+
+{
+    "name": "Castille blue",
+    "notes": "A nice blue glaze with some variations"
+}
+
+
+### Delete a glaze 
+DELETE http://localhost:3000/glazes/2

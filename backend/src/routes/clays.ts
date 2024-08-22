@@ -24,10 +24,11 @@ router.post("/", async (req, res) => {
 });
 
 // delete one
+// HARD DELETE
 router.delete("/:id", async (req, res) => {
   console.log("trying to delete something");
   const id = req.params.id;
-  const result = await db.deleteClay(id);
+  const result = await db.hardDeleteClay(id);
 });
 
 export default router;

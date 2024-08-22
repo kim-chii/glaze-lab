@@ -89,11 +89,30 @@ VALUES ('${name}', '${notes}');
   }
 };
 
-const deleteClay = async (id) => {
+const addGlaze = async (name: string, notes: string) => {
   try {
     const query = `
-   INSERT INTO clays (name, notes)
+   INSERT INTO glazes (name, notes)
 VALUES ('${name}', '${notes}');
+    `;
+    let result = await pool.query(query);
+
+    const rowCount = result?.rowCount;
+    return rowCount;
+  } catch (e) {
+    console.error("Issue in addGlaze!! ", e);
+  }
+};
+
+/**
+ * This is a HARD delete and will delete all clays + glaze tests where the clay is used. Probably want to think about a soft delete
+ * @param id
+ * @returns
+ */
+const hardDeleteClay = async (id: number) => {
+  try {
+    const query = `
+    DELETE from clays where id = ${id} 
     `;
     let result = await pool.query(query);
 
@@ -104,11 +123,28 @@ VALUES ('${name}', '${notes}');
   }
 };
 
+const hardDeleteGlaze = async (id: number) => {
+  try {
+    const query = `
+    DELETE from glazes where id = ${id} 
+    `;
+    let result = await pool.query(query);
+
+    console.log("result: ", result);
+    const rowCount = result?.rowCount;
+    return rowCount;
+  } catch (e) {
+    console.error("Issue in hardDeleteGlaze!! ", e);
+  }
+};
+
 export {
   getAllClays,
   getAllGlazes,
   getAllGlazeTests,
   getAllGlazesForTest,
   addClay,
-  deleteClay,
+  addGlaze,
+  hardDeleteClay,
+  hardDeleteGlaze,
 };
