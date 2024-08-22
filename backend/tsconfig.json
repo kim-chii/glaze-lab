@@ -5,7 +5,8 @@
     "target": "es6",
     "moduleResolution": "nodenext",
     "module": "NodeNext",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true
     // "noEmitOnError": true
   },
   "ts-node": {

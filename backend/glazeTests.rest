@@ -1,1 +1,12 @@
-GET http://localhost:3000/glazeTests/1
+GET http://localhost:3000/glazeTests
+
+### 
+POST http://localhost:3000/glazeTests
+Content-Type: application/json
+
+{
+    "name": "Glaze test 4",
+    "notes": "a fourth glaze test",
+    "clayId": 1,
+    "glazes": [3, 2, 1]
+}

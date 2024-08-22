@@ -9,4 +9,16 @@ router.get("/", async (req, res) => {
   res.send(tests);
 });
 
+router.post("/", async (req, res) => {
+  const { name, notes, clayId, glazes } = req.body;
+  const { rowCount, id: glazeTestId } = await db.addGlazeTest(
+    name,
+    notes,
+    clayId
+  );
+
+  const result = await db.addGlazeTestRelationship(glazeTestId, glazes);
+  res.send(`Inserted ${rowCount} rows`);
+});
+
 export default router;

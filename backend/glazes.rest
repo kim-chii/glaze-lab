@@ -13,3 +13,7 @@ content-type: application/json
 
 ### Delete a glaze 
 DELETE http://localhost:3000/glazes/2
+
+
+### Testing add a glaze test relationship
+GET http://localhost:3000/glazes/test

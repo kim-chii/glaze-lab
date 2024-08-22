@@ -29,6 +29,9 @@ VALUES ('Koke White', 'a good all around white glaze that is very stable');
 INSERT INTO glazes (name, notes)
 VALUES ('Magical Mist', 'a great combo glaze, can be runny');
 
+INSERT INTO glazes (name, notes)
+VALUES ('Castille Blue', 'a nice blue glaze');
+
 -- GLAZETEST TABLE -- 
 
 DROP TABLE glaze_tests CASCADE;
@@ -36,10 +39,10 @@ CREATE TABLE glaze_tests (
     id SERIAL PRIMARY KEY NOT NULL,
     name TEXT NOT NULL,
     notes TEXT,
-    clayId INT REFERENCES clays ON DELETE CASCADE
+    clay_id INT REFERENCES clays ON DELETE CASCADE
 );
 
-INSERT INTO glaze_tests (name, notes, clayId)
+INSERT INTO glaze_tests (name, notes, clay_id)
 VALUES ('Glaze Test 1', 'magical mist / koke white', 1), ('Glaze Test 2', 'koke white / magical mist', 2);
 
 -- create junction table for glazes to glaze tests

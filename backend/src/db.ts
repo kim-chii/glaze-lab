@@ -1,6 +1,7 @@
 // db.js
 
 import pg from "pg";
+import * as DBUtils from "./dbUtils.ts";
 
 // set upClient connection to postgres
 const { Pool } = pg;
@@ -104,6 +105,42 @@ VALUES ('${name}', '${notes}');
   }
 };
 
+const addGlazeTestRelationship = async (
+  glazeTestId: number,
+  glazes: Array<number>
+) => {
+  const formattedPairs = DBUtils.formatGlazeTestRelationshipPairs(
+    glazeTestId,
+    glazes
+  );
+  try {
+    const query = `
+   INSERT INTO glazetests_glazes (glaze_test_id, glaze_id)
+VALUES ${formattedPairs};
+    `;
+    let result = await pool.query(query);
+
+    const rowCount = result?.rowCount;
+    return rowCount;
+  } catch (e) {
+    console.error("Issue in addGlazeTestRelationship!! ", e);
+  }
+};
+
+const addGlazeTest = async (name: string, notes: string, clayId) => {
+  try {
+    const query = `
+      INSERT INTO glaze_tests (name, notes, clay_id)
+      VALUES ('${name}', '${notes}', ${clayId})  RETURNING id`;
+
+    let result = await pool.query(query);
+    let nextId = result.rows[0].id;
+    const rowCount = result?.rowCount;
+    return { rowCount, id: nextId };
+  } catch (e) {
+    console.error("Issue in addGlazeTest!! ", e);
+  }
+};
 /**
  * This is a HARD delete and will delete all clays + glaze tests where the clay is used. Probably want to think about a soft delete
  * @param id
@@ -145,6 +182,8 @@ export {
   getAllGlazesForTest,
   addClay,
   addGlaze,
+  addGlazeTest,
   hardDeleteClay,
   hardDeleteGlaze,
+  addGlazeTestRelationship,
 };
