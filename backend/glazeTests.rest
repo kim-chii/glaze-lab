@@ -10,3 +10,6 @@ Content-Type: application/json
     "clayId": 1,
     "glazes": [3, 2, 1]
 }
+
+### Delete a glaze test with id
+DELETE http://localhost:3000/glazeTests/7

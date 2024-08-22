@@ -21,4 +21,13 @@ router.post("/", async (req, res) => {
   res.send(`Inserted ${rowCount} rows`);
 });
 
+/**
+ * HARD delete a specific glaze test
+ */
+router.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+  const rowCount = await db.hardDeleteGlazeTest(id);
+  res.send(`Deleted ${rowCount} rows`);
+});
+
 export default router;

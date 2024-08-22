@@ -175,6 +175,20 @@ const hardDeleteGlaze = async (id: number) => {
   }
 };
 
+const hardDeleteGlazeTest = async (id: number) => {
+  try {
+    const query = `
+    DELETE from glaze_tests where id = ${id} 
+    `;
+    let result = await pool.query(query);
+
+    const rowCount = result?.rowCount;
+    return rowCount;
+  } catch (e) {
+    console.error("Issue in hardDeleteGlazeTest!! ", e);
+  }
+};
+
 export {
   getAllClays,
   getAllGlazes,
@@ -185,5 +199,6 @@ export {
   addGlazeTest,
   hardDeleteClay,
   hardDeleteGlaze,
+  hardDeleteGlazeTest,
   addGlazeTestRelationship,
 };
