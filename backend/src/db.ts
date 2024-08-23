@@ -3,7 +3,7 @@
 import pg from "pg";
 import * as DBUtils from "./dbUtils.ts";
 
-// set upClient connection to postgres
+// set up Client connection to postgres
 const { Pool } = pg;
 const pool = new Pool({
   host: "localhost",
@@ -14,15 +14,16 @@ const pool = new Pool({
   database: "glazeapp",
 });
 
-const getAllClays = async () => {
-  console.log("called getAllClayBodies!!!!!!!!!!!!!!!");
-  try {
-    let result = await pool.query(`SELECT * FROM clays;`);
+pool.on("connect", (client) => {
+  console.log("pool connected ===============");
+});
 
-    const clays = result?.rows;
-    return clays;
+const queryDb = async (query: string) => {
+  try {
+    let result = await pool.query(query);
+    return result;
   } catch (e) {
-    console.error("Issue!! ", e);
+    console.error(e);
   }
 };
 
@@ -72,21 +73,6 @@ const getAllGlazesForTest = async (glazeTestId) => {
     return rows;
   } catch (e) {
     console.error("Issue in getAllGlazeTests!! ", e);
-  }
-};
-
-const addClay = async (name, notes) => {
-  try {
-    const query = `
-   INSERT INTO clays (name, notes)
-VALUES ('${name}', '${notes}');
-    `;
-    let result = await pool.query(query);
-
-    const rowCount = result?.rowCount;
-    return rowCount;
-  } catch (e) {
-    console.error("Issue in addClay!! ", e);
   }
 };
 
@@ -141,24 +127,6 @@ const addGlazeTest = async (name: string, notes: string, clayId) => {
     console.error("Issue in addGlazeTest!! ", e);
   }
 };
-/**
- * This is a HARD delete and will delete all clays + glaze tests where the clay is used. Probably want to think about a soft delete
- * @param id
- * @returns
- */
-const hardDeleteClay = async (id: number) => {
-  try {
-    const query = `
-    DELETE from clays where id = ${id} 
-    `;
-    let result = await pool.query(query);
-
-    const rowCount = result?.rowCount;
-    return rowCount;
-  } catch (e) {
-    console.error("Issue in addClay!! ", e);
-  }
-};
 
 const hardDeleteGlaze = async (id: number) => {
   try {
@@ -190,14 +158,12 @@ const hardDeleteGlazeTest = async (id: number) => {
 };
 
 export {
-  getAllClays,
+  queryDb,
   getAllGlazes,
   getAllGlazeTests,
   getAllGlazesForTest,
-  addClay,
   addGlaze,
   addGlazeTest,
-  hardDeleteClay,
   hardDeleteGlaze,
   hardDeleteGlazeTest,
   addGlazeTestRelationship,

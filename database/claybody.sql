@@ -5,7 +5,7 @@ DROP TABLE clays CASCADE;
 
 CREATE TABLE clays (
     id SERIAL PRIMARY KEY NOT NULL,
-    name TEXT NOT NULL,
+    name TEXT NOT NULL UNIQUE,
     notes TEXT
 );
 
