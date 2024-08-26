@@ -20,5 +20,5 @@ const formatGlazeTestRelationshipPairs = (
 
 // output should be (7 , 1),
 
-export { formatGlazeTestRelationshipPairs };
+export default { formatGlazeTestRelationshipPairs };
 // TODO: figure out how to export this and use it to insert glaze test relationship pairs
