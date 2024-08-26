@@ -27,18 +27,6 @@ const queryDb = async (query: string) => {
   }
 };
 
-const getAllGlazes = async () => {
-  try {
-    let result = await pool.query(`SELECT * FROM glazes;`);
-
-    console.log("result: ", result);
-    const glazes = result?.rows;
-    return glazes;
-  } catch (e) {
-    console.error("Issue in getAllGlazes!! ", e);
-  }
-};
-
 const getAllGlazeTests = async () => {
   try {
     let dbResult = await pool.query(`SELECT * FROM glaze_tests;`);
@@ -73,21 +61,6 @@ const getAllGlazesForTest = async (glazeTestId) => {
     return rows;
   } catch (e) {
     console.error("Issue in getAllGlazeTests!! ", e);
-  }
-};
-
-const addGlaze = async (name: string, notes: string) => {
-  try {
-    const query = `
-   INSERT INTO glazes (name, notes)
-VALUES ('${name}', '${notes}');
-    `;
-    let result = await pool.query(query);
-
-    const rowCount = result?.rowCount;
-    return rowCount;
-  } catch (e) {
-    console.error("Issue in addGlaze!! ", e);
   }
 };
 
@@ -128,21 +101,6 @@ const addGlazeTest = async (name: string, notes: string, clayId) => {
   }
 };
 
-const hardDeleteGlaze = async (id: number) => {
-  try {
-    const query = `
-    DELETE from glazes where id = ${id} 
-    `;
-    let result = await pool.query(query);
-
-    console.log("result: ", result);
-    const rowCount = result?.rowCount;
-    return rowCount;
-  } catch (e) {
-    console.error("Issue in hardDeleteGlaze!! ", e);
-  }
-};
-
 const hardDeleteGlazeTest = async (id: number) => {
   try {
     const query = `
@@ -159,12 +117,9 @@ const hardDeleteGlazeTest = async (id: number) => {
 
 export {
   queryDb,
-  getAllGlazes,
   getAllGlazeTests,
   getAllGlazesForTest,
-  addGlaze,
   addGlazeTest,
-  hardDeleteGlaze,
   hardDeleteGlazeTest,
   addGlazeTestRelationship,
 };
