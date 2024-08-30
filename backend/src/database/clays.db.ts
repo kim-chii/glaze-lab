@@ -5,9 +5,25 @@ interface AddClayParams {
   notes?: string;
 }
 
+interface Clay {
+  id: number;
+  name: string;
+  notes?: string;
+  deleted_at?: string;
+}
+
 const getAllClays = async () => {
   let result = await db.queryDb(`select * from clays;`);
   return result?.rows;
+};
+
+const getClayById = async (id: number): Promise<Clay[]> => {
+  const query = `
+  SELECT * FROM clays
+  WHERE id = ${id};
+  `;
+  let result = await db.queryDb(query);
+  return result?.rows || [];
 };
 
 const addClay = async (params: AddClayParams) => {
@@ -45,4 +61,5 @@ const deleteClay = async (id: number) => {
   let result = await db.queryDb(query);
   return result?.rowCount || 0;
 };
-export { getAllClays, addClay, hardDeleteClay, deleteClay };
+
+export { getAllClays, addClay, hardDeleteClay, deleteClay, getClayById };

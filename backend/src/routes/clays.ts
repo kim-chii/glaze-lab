@@ -11,8 +11,12 @@ router.get("/", async (req, res) => {
 });
 
 // get one clay body
-router.get("/:id", (req, res) => {
-  res.send(`get a specific claybody with id ${req.params.id}`);
+router.get("/:id", async (req, res) => {
+  const result = await clays.getClayById(req.params.id);
+  if (result.length === 0) {
+    res.send(`There is no clay with id ${req.params.id}`);
+  }
+  res.send(result);
   // req.params.id
 });
 
