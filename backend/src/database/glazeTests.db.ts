@@ -25,7 +25,7 @@ const getAllGlazesForTest = async (glazeTestId) => {
   try {
     // returns all glazes for a specific test
     const query = `
-    SELECT gtg.glaze_test_id, glazes.id as glaze_id, glazes.name 
+    SELECT gtg.glaze_test_id, gtg.glaze_order, glazes.id as glaze_id, glazes.name 
     FROM glazes
     LEFT JOIN glazetests_glazes gtg ON glazes.id = gtg.glaze_id
     WHERE glaze_test_id = ${glazeTestId}`;

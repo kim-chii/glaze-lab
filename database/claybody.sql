@@ -50,14 +50,15 @@ DROP TABLE glazetests_glazes CASCADE;
 CREATE TABLE glazetests_glazes(
     glaze_test_id INTEGER REFERENCES glaze_tests(id) ON DELETE CASCADE,
     glaze_id INTEGER REFERENCES glazes(id) ON DELETE CASCADE,
-    CONSTRAINT glazetests_glazes_pk PRIMARY KEY(glaze_test_id,glaze_id) 
+    glaze_order INTEGER NOT NULL,
+    CONSTRAINT glazetests_glazes_pk PRIMARY KEY(glaze_test_id,glaze_id, glaze_order)
 );
 
-INSERT INTO glazetests_glazes (glaze_test_id, glaze_id)
-VALUES (1, 1), (1, 2); -- (test 1, magical mist), (test 1, koke white)
+INSERT INTO glazetests_glazes (glaze_test_id, glaze_id, glaze_order)
+VALUES (1, 1, 1), (1, 2, 2); -- (test 1, magical mist, first coat), (test 1, koke white, second coat)
 
-INSERT INTO glazetests_glazes (glaze_test_id, glaze_id)
-VALUES (2, 2), (2, 1); -- (test 2, magical mist), (test 1, koke white)
+INSERT INTO glazetests_glazes (glaze_test_id, glaze_id, glaze_order)
+VALUES (2, 2, 1), (2, 1, 2); -- (test 2, magical mist, second coat), (test 1, koke white, first coat)
 
 
 
