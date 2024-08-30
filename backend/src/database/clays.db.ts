@@ -37,4 +37,12 @@ const hardDeleteClay = async (id: number) => {
   return rowCount;
 };
 
-export { getAllClays, addClay, hardDeleteClay };
+const deleteClay = async (id: number) => {
+  const query = `
+  UPDATE clays
+  SET deleted_at = NOW()
+  WHERE id = 1`;
+  let result = await db.queryDb(query);
+  return result?.rowCount || 0;
+};
+export { getAllClays, addClay, hardDeleteClay, deleteClay };

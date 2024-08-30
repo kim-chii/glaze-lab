@@ -25,11 +25,9 @@ router.post("/", async (req, res) => {
 });
 
 // delete one
-// HARD DELETE
 router.delete("/:id", async (req, res) => {
-  console.log("trying to delete something");
   const id = req.params.id;
-  const result = await clays.hardDeleteClay(id);
+  const result = await clays.deleteClay(id);
   res.send(`Deleted ${result} rows`);
 });
 
