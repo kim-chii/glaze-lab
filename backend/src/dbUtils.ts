@@ -9,8 +9,8 @@ const formatGlazeTestRelationshipPairs = (
   glazes: Array<number>
 ) => {
   let result: Array<string> = [];
-  glazes.forEach((e) => {
-    result.push(`(${glazeTestId}, ${e})`);
+  glazes.forEach((e, index) => {
+    result.push(`(${glazeTestId}, ${e}, ${index + 1})`);
     console.log("element: ", e);
   });
   const finalResult = result.join(", ");

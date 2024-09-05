@@ -38,6 +38,12 @@ const getAllGlazesForTest = async (glazeTestId) => {
   }
 };
 
+/**
+ *
+ * @param glazeTestId
+ * @param glazes
+ * @returns query output (glaze_test_id, glaze_id, glaze_order), (etc)
+ */
 const addGlazeTestRelationship = async (
   glazeTestId: number,
   glazes: Array<number>
@@ -48,7 +54,7 @@ const addGlazeTestRelationship = async (
   );
   try {
     const query = `
-   INSERT INTO glazetests_glazes (glaze_test_id, glaze_id)
+   INSERT INTO glazetests_glazes (glaze_test_id, glaze_id, glaze_order)
 VALUES ${formattedPairs};
     `;
     let result = await db.queryDb(query);
