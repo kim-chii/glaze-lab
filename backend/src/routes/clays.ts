@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import * as db from "../db.js";
+import * as db from "../database/db.ts";
 import * as clays from "../database/clays.db.ts";
 
 // get all clay bodies

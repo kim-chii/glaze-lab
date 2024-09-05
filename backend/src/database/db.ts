@@ -1,7 +1,7 @@
 // db.js
 
 import pg from "pg";
-import DBUtils from "./dbUtils.ts";
+import DBUtils from "../dbUtils.ts";
 
 // set up Client connection to postgres
 const { Pool } = pg;
@@ -23,7 +23,7 @@ const queryDb = async (query: string) => {
     let result = await pool.query(query);
     return result;
   } catch (e) {
-    console.error(e);
+    throw new Error(e);
   }
 };
 

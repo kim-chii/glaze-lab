@@ -1,4 +1,4 @@
-import * as db from "../db.ts";
+import * as db from "./db.ts";
 
 const getAllGlazes = async () => {
   try {
